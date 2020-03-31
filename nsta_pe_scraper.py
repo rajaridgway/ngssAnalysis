@@ -20,17 +20,17 @@ ccc_list = []
 
 #Loop through all pages
 for url in urls:
+    source = requests.get(url).text
+    soup = BeautifulSoup(source, 'lxml')
+    
     try:
-        source = requests.get(url).text
-        soup = BeautifulSoup(source, 'lxml')
-
         #Get the performance expectation
         pe_num = soup.select('.std > a')
         #Convert the soup element to a string and only get text
         pe_num = str(pe_num[0].getText())
         #Append PE_num to appropriate list
         pe_num_list.append(pe_num)
-
+    
         #Get the SEP
         sep = soup.select('#MainContent_rptPractices_lblPractice_0')
         #Convert the soup element to a string and only get text
@@ -44,6 +44,7 @@ for url in urls:
         ccc = str(ccc[0].getText())
         #Append ccc to appropriate list
         ccc_list.append(ccc)
+
     except IndexError:
         ccc_list.append("None")
         continue
@@ -56,4 +57,4 @@ ngss_df = pd.DataFrame(
     })
 
 #Export to csv
-ngss_df.to_csv(r'/Users/rajaridgway/ngss2.csv', index=False)
+ngss_df.to_csv(r'/Users/rajaridgway/ngss.csv', index=False)
