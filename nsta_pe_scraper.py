@@ -13,9 +13,6 @@ urls = []
 for i in [x for x in range(23,234) if x != 24 and x != 25 and x!=201]:
    urls.append('https://ngss.nsta.org/DisplayStandard.aspx?view=pe&id=' + str(i))
 
-#Create list of pages
-#urls = ['https://ngss.nsta.org/DisplayStandard.aspx?view=pe&id=227','https://ngss.nsta.org/DisplayStandard.aspx?view=pe&id=229']
-
 #Create empty lists
 pe_num_list = []
 sep_list = []
@@ -59,4 +56,4 @@ ngss_df = pd.DataFrame(
     })
 
 #Export to csv
-ngss_df.to_csv(r'/Users/rajaridgway/ngss.csv', index=False)
+ngss_df.to_csv(r'/Users/rajaridgway/ngss2.csv', index=False)
